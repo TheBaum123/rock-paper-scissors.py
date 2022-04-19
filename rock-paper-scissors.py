@@ -89,7 +89,14 @@ def submit():
                 win()
             if computer_choice == "rock":
                 lose()
-        print(player_choice, computer_choice)
+        
+        #who chose what
+        player_choice_label = Label(window, text="Player chose: " + player_choice)
+        computer_choice_label = Label(window, text="Computer chose: " + computer_choice)
+        player_choice_label.grid(row=3, column=1)
+        computer_choice_label.grid(row=3, column=3)
+
+        #reset choices
         player_choice = ""
         computer_choice = ""
 
