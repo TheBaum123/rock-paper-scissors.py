@@ -7,6 +7,10 @@ player_choice = ""
 computer_choice = ""
 output = ""
 player_and_computer_chose = ""
+score = 0
+number_of_games = 0
+win_percentage = 0.0
+
 
 # possible decisions
 possible_choices = ["rock", "paper", "scissors"]
@@ -36,28 +40,40 @@ def player_choice_scissors():
 
 # #set label to You win
 def win():
+    global win_percentage_label
+    global score_label
     global you_won_label
     global you_lost_label
     global tie_label
+    global score
+    score += 1
     you_won_label.grid_forget()
     you_lost_label.grid_forget()
     tie_label.grid_forget()
     you_won_label.grid(row=4, column=2)
+    score_label.grid(row=5, column=2)
+    win_percentage_label.grid(row=6, column=2)
 
 
 #set label to You lose
 def lose():
+    global win_percentage_label
     global you_won_label
     global you_lost_label
     global tie_label
+    global score_label
     you_won_label.grid_forget()
     you_lost_label.grid_forget()
     tie_label.grid_forget()
     you_lost_label.grid(row=4, column=2)
+    score_label.grid(row=5, column=2)
+    win_percentage_label.grid(row=6, column=2)
 
 
 #set label to tie
 def tie():
+    global win_percentage_label
+    global score_label
     global you_won_label
     global you_lost_label
     global tie_label
@@ -65,13 +81,15 @@ def tie():
     you_lost_label.grid_forget()
     tie_label.grid_forget()
     tie_label.grid(row=4, column=2)
+    score_label.grid(row=5, column=2)
+    win_percentage_label.grid(row=6, column=2)
 
 
 #win detection
 def submit():
-    global player_choice
-    global computer_choice
+    global player_choice,computer_choice,score, number_of_games, win_percentage, win_percentage_label, score_label
     if player_choice in possible_choices:
+        number_of_games += 1
         if player_choice == computer_choice:
             tie()
         if player_choice == "rock":
@@ -89,6 +107,7 @@ def submit():
                 win()
             if computer_choice == "rock":
                 lose()
+        win_percentage = score / number_of_games
         
         #who chose what
         player_choice_label = Label(window, text="Player chose: " + player_choice)
@@ -99,6 +118,8 @@ def submit():
         #reset choices
         player_choice = ""
         computer_choice = ""
+        score_label = Label(window, text=f"score is {score}")
+        win_percentage_label = Label(window, text=f"win percentage is {win_percentage}")
 
 
 # create window
@@ -128,12 +149,18 @@ submit_button.grid(row=3, column=2)
 you_won_label = Label(window, text="You Won!")
 you_lost_label = Label(window, text="You lost :(")
 tie_label = Label(window, text="tie")
+score_label = Label(window, text=f"score is {score}")
+win_percentage_label = Label(window, text=f"win percentage is {win_percentage}")
+
+
 
 #configure grid layout
 window.rowconfigure(1, weight=1)
 window.rowconfigure(2, weight=1)
 window.rowconfigure(3, weight=1)
 window.rowconfigure(4, weight=1)
+window.rowconfigure(5, weight=1)
+window.rowconfigure(6, weight=1)
 window.columnconfigure(1, weight=1)
 window.columnconfigure(2, weight=1)
 window.columnconfigure(3, weight=1)
