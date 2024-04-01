@@ -1,6 +1,7 @@
 # import
 from tkinter import *
 import random
+import math
 
 # create variables
 player_choice = ""
@@ -47,7 +48,7 @@ def win():
     global tie_label
     global score
     score += 1
-    win_percentage = score / number_of_games * 100
+    win_percentage = math.floor(score / number_of_games * 100)
     score_label = Label(window, text=f"score is {score}")
     win_percentage_label = Label(window, text=f"win percentage is {win_percentage}%")
     you_won_label.grid_forget()
@@ -67,7 +68,7 @@ def lose():
     global you_lost_label
     global tie_label
     global score_label
-    win_percentage = score / number_of_games * 100
+    win_percentage = math.floor(score / number_of_games * 100)
     score_label = Label(window, text=f"score is {score}")
     win_percentage_label = Label(window, text=f"win percentage is {win_percentage}%")
     you_won_label.grid_forget()
@@ -87,7 +88,7 @@ def tie():
     global you_won_label
     global you_lost_label
     global tie_label
-    win_percentage = score / number_of_games * 100
+    win_percentage = math.floor(score / number_of_games * 100)
     score_label = Label(window, text=f"score is {score}")
     win_percentage_label = Label(window, text=f"win percentage is {win_percentage}%")
     you_won_label.grid_forget()
