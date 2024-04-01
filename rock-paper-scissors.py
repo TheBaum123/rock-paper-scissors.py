@@ -47,9 +47,14 @@ def win():
     global tie_label
     global score
     score += 1
+    win_percentage = score / number_of_games * 100
+    score_label = Label(window, text=f"score is {score}")
+    win_percentage_label = Label(window, text=f"win percentage is {win_percentage}%")
     you_won_label.grid_forget()
     you_lost_label.grid_forget()
     tie_label.grid_forget()
+    score_label.grid_forget()
+    win_percentage_label.grid_forget()
     you_won_label.grid(row=4, column=2)
     score_label.grid(row=5, column=2)
     win_percentage_label.grid(row=6, column=2)
@@ -62,9 +67,14 @@ def lose():
     global you_lost_label
     global tie_label
     global score_label
+    win_percentage = score / number_of_games * 100
+    score_label = Label(window, text=f"score is {score}")
+    win_percentage_label = Label(window, text=f"win percentage is {win_percentage}%")
     you_won_label.grid_forget()
     you_lost_label.grid_forget()
     tie_label.grid_forget()
+    score_label.grid_forget()
+    win_percentage_label.grid_forget()
     you_lost_label.grid(row=4, column=2)
     score_label.grid(row=5, column=2)
     win_percentage_label.grid(row=6, column=2)
@@ -77,9 +87,14 @@ def tie():
     global you_won_label
     global you_lost_label
     global tie_label
+    win_percentage = score / number_of_games * 100
+    score_label = Label(window, text=f"score is {score}")
+    win_percentage_label = Label(window, text=f"win percentage is {win_percentage}%")
     you_won_label.grid_forget()
     you_lost_label.grid_forget()
     tie_label.grid_forget()
+    score_label.grid_forget()
+    win_percentage_label.grid_forget()
     tie_label.grid(row=4, column=2)
     score_label.grid(row=5, column=2)
     win_percentage_label.grid(row=6, column=2)
@@ -107,7 +122,6 @@ def submit():
                 win()
             if computer_choice == "rock":
                 lose()
-        win_percentage = score / number_of_games
         
         #who chose what
         player_choice_label = Label(window, text="Player chose: " + player_choice)
@@ -118,14 +132,12 @@ def submit():
         #reset choices
         player_choice = ""
         computer_choice = ""
-        score_label = Label(window, text=f"score is {score}")
-        win_percentage_label = Label(window, text=f"win percentage is {win_percentage}")
 
 
 # create window
 window = Tk()
 window.title("Rock, Paper, Scissors")
-window.geometry("600x300")
+window.geometry("900x600")
 
 # Heading
 heading = Label(window, text="Pick one!")
@@ -159,7 +171,7 @@ window.rowconfigure(1, weight=1)
 window.rowconfigure(2, weight=1)
 window.rowconfigure(3, weight=1)
 window.rowconfigure(4, weight=1)
-window.rowconfigure(5, weight=1)
+# window.rowconfigure(5, weight=1)
 window.rowconfigure(6, weight=1)
 window.columnconfigure(1, weight=1)
 window.columnconfigure(2, weight=1)
